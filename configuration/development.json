@@ -1,0 +1,20 @@
+{
+  "port": 3001,
+  "shutdownTimeout": 0,
+  "endpoints": {
+    "base": "http://localhost:3001",
+    "code-battle": "http://localhost:3000"
+  },
+  "db": {
+    "connection": "mongodb://vlados:vlados@ds015690.mlab.com:15690/inbriefdb",
+    "name": "inbrief",
+    "options": {}
+  },
+  "corsOptions": {
+    "origin": "http://localhost:3000"
+  },
+  "logging": {
+    "level": "debug",
+    "transports": ["console"]
+  }
+}

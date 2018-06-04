@@ -1,0 +1,20 @@
+{
+  "port": 3001,
+  "shutdownTimeout": 60000,
+  "endpoints": {
+    "base": "http://localhost:3001",
+    "code-battle": "http://battle.frontspot.co"
+  },
+  "db": {
+    "connection": "mongodb://mongo:27017/redirects",
+    "name": "inbrief",
+    "options": {}
+  },
+  "corsOptions": {
+    "origin": "http://battle.frontspot.co"
+  },
+  "logging": {
+    "level": "info",
+    "transports": ["console"]
+  }
+}
