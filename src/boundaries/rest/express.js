@@ -2,6 +2,7 @@ const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 
 const config = require('../../../configuration');
 const logger = require('../../services/logger');
@@ -13,14 +14,16 @@ const router = express.Router();
 const app = express();
 
 
-app.use(cors(config.get('corsOptions')));
+// app.use(cors(config.get('corsOptions')));
 
 app.use(helmet.frameguard());
 app.use(helmet.hidePoweredBy());
 app.use(helmet.noSniff());
 app.use(helmet.referrerPolicy());
 app.use(helmet.xssFilter());
-app.use(express.json());
+
+app.use(bodyParser.json());
+
 
 app.use(morgan('combined', { stream: logger.stream }));
 

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const amiRedirects = new mongoose.Schema({
+const AmiRedirects = new mongoose.Schema({
   upsa: Number,
   tournament: {
     type: String,
@@ -12,17 +12,17 @@ const amiRedirects = new mongoose.Schema({
   }
 });
 
-amiRedirects.statics.find = function(upsa, tournament, task) {
-  const data = {
+AmiRedirects.statics.findRedirect = function(upsa, tournament, task) {
+  const query = {
     upsa: upsa,
     tournament: tournament,
   };
-  if (task) data.task = task;
+  if (task) query.task = task;
 
-  return this.find(data, { _id: false, _v: false });
+  return this.find(query, { _id: false, _v: false });
 }
 
-amiRedirects.statics.createOrUpdate = function(upsa, tournament, task) {
+AmiRedirects.statics.createOrUpdate = function(upsa, tournament, task) {
   const data = {
     upsa: upsa,
     tournament: tournament,
@@ -33,8 +33,8 @@ amiRedirects.statics.createOrUpdate = function(upsa, tournament, task) {
 }
 
 const AmiRedirectsModel = mongoose.model(
-  'amiRedirects',
-  amiRedirects
+  'AmiRedirects',
+  AmiRedirects
 );
 
 

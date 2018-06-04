@@ -6,7 +6,7 @@ const {
 function createRedirectRoutes() {
   const router = new Router();
 
-  router.get('/ami', postAmiRedirect);
+  router.post('/ami', postAmiRedirect);
 
   return router;
 }

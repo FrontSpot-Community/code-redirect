@@ -3,7 +3,8 @@
   "shutdownTimeout": 60000,
   "endpoints": {
     "base": "http://localhost:3001",
-    "code-battle": "http://battle.frontspot.co"
+    "code-battle": "http://battle.frontspot.co",
+    "ami": "http://ami-server.azurewebsites.net/"
   },
   "db": {
     "connection": "mongodb://mongo:27017/redirects",
