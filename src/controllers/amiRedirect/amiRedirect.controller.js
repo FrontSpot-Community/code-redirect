@@ -1,12 +1,12 @@
 const Joi = require('joi');
-const amiRedirectsModel = require('../amiLanding/amiRedirects.model');
+const amiRedirectsModel = require('./amiRedirects.model');
 const config = require('../../../configuration');
 const logger = require('../../services/logger');
 const fetch = require('node-fetch');
+const httpService = require('../../services/http');
 
 
 const scheme = Joi.object().keys({
-  name: Joi.string().required(),
   upsa: Joi.number().required(),
   language: Joi.string().required(),
   tournament: Joi.string().required(),
@@ -38,16 +38,14 @@ const postAmiRedirect = async (req, res, next) => {
       return;
     }
 
-    // send to ami
-    await fetch(config.get('endpoints:ami'), {
-      method: 'POST',
-      body: JSON.stringify(data)
-    });
+    // Send data about completion to ami
+    // TODO: remove the record if this call successful
+    await httpService.post(config.get('endpoints:ami'), data)
     logger.debug('Sent to ami: %o', data);
 
     res.json({ 'status': 'Redirected successfully' })
   } catch (err) {
-    logger.error('Error during findByPage: %o', err);
+    logger.error('Error during redirect: %o', err);
     res.status(500).json({ message: 'Something went wrong on the server' });
   }
 

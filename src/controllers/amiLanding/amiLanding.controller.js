@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const amiRedirectsModel = require('./amiRedirects.model');
+const amiRedirectsModel = require('../amiRedirect/amiRedirects.model');
 const config = require('../../../configuration');
 const logger = require('../../services/logger');
 
@@ -37,7 +37,7 @@ const getAmiLanding = async (req, res, next) => {
       return;
     }
 
-    res.redirect(302, `${config.get('endpoints:code-battle')}/${tournament}/${task ? task : ''}`);
+    res.redirect(303, `${config.get('endpoints:code-battle')}/${tournament}/${task ? task : ''}`);
   } catch (err) {
     logger.error(`Error during findByPage: ${err}`);
     res.status(500).json({ message: 'Something went wrong on the server' });
