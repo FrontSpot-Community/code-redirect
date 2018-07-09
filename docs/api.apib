@@ -1,0 +1,54 @@
+FORMAT: 1A
+
+# code-redirect
+
+The service to provides redirects landing for 3rd party code-battle services.
+
+## Questions Collection [/metalanding/ami]
+
+### Redirect user to Code battle task [GET]
+
++ Attributes
+    + provider: `ami` (string) - The name of provider from where redirect is coming
+    + upsa: `123456` (number) - upsaId to identify user on code battle side
+    + tournament
+    + task
+
++ Request (application/json)
+
+        {
+            "provider": "ami",
+            "upsa": 123456,
+            "tournament": "ami",
+            "task": "frontspot_tournament"
+        }
+
+
++ Response 302 (application/json)
+
+    + Headers
+
+            Location: /ami/frontspot_tournament/
+
+## Group AMI redirect  [/metaredirect/ami]
+
+### Send ami task completion [POST]
+
++ Request (application/json)
+
+        {
+            "upsa": 123456,
+            "tournament": "ami",
+            "task": "frontspot_tournament"
+        }
+
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /ami/frontspot_tournament/
+
+
+
+
